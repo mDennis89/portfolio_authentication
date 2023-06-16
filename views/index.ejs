@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <!-- CSS Section -->
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel='stylesheet' href='/Content/app.css' />
+
+</head>
+</body>
+
+<!-- Main Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/"><img src="https://drive.google.com/uc?export=view&id=1i2LMFaB7RCYaI0lf12ZJb9VKvNdEMTCK" height="50" alt="Logo">
+    Melissa Dennis</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+  
+        <% if (title == "Home") { %>
+        <li class="nav-item active">
+        <% } else { %>
+        <li class="nav-item">
+        <% } %>
+          <a class="nav-link" href="/home"><i class="fa-solid fa-house"></i> Home </a>
+        </li>
+  
+        <% if (title == "About Me") { %>
+          <li class="nav-item active">
+          <% } else { %>
+          <li class="nav-item">
+          <% } %>
+          <a class="nav-link" href="/about-me"><i class="fa-solid fa-user"></i> About Me </a>
+        </li>
+  
+        <% if (title == "Projects") { %>
+          <li class="nav-item active">
+          <% } else { %>
+          <li class="nav-item">
+          <% } %>
+          <a class="nav-link" href="/projects"><i class="fa-solid fa-cart-shopping"></i> Projects </a>
+        </li>
+  
+        <% if (title == "Services") { %>
+          <li class="nav-item active">
+          <% } else { %>
+          <li class="nav-item">
+          <% } %>
+          <a class="nav-link" href="/services"><i class="fa-solid fa-bars"></i> Services </a>
+        </li>
+  
+        <% if (title == "Contact") { %>
+          <li class="nav-item active">
+          <% } else { %>
+          <li class="nav-item">
+          <% } %>
+          <a class="nav-link" href="/contact"><i class="fa-solid fa-question"></i> Contact </a>
+        </li>
+    </div>
+  </nav>
+
+<!-- Main Content -->
+<main class="container text-center">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="jumbotron">
+        <h1 class="display-4" style="font-size: 50px;">Welcome to the <%= title %> page</h1>
+      </div> 
+    </div>
+  </div>
+</main>
+
+        <!--mission statement-->
+    <% if (title == 'Home') { %>
+    <div class="mission-statement">
+      <a href="/about-me" class="btn btn-primary">About Me </a>
+      <h2>Mission Statement</h2>
+      <p>As an entry-level software engineer, my mission is to leverage my technical skills, creativity, 
+        and passion for problem-solving to contribute to the 
+        development of innovative software solutions. I am committed to 
+        continuously learning and growing in this dynamic field, 
+        staying up-to-date with the latest technologies and best practices. 
+        With a focus on delivering high-quality, efficient, and user-centric 
+        software, I aim to collaborate effectively with cross-functional teams, communicate clearly, 
+        and embrace feedback to create impactful and reliable applications. 
+        By striving for excellence and embracing challenges, my goal is to make a positive 
+        impact on users' lives and contribute to the advancement of technology.</p>
+    </div>
+    <% } %>
+
+    <style>
+  .mission-statement {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  }
+    </style>
+
+    <!-- button-->
+    <style>
+    .jumbotron {
+      position: relative;
+    }
+    
+    .btn-primary {
+      position: relative;
+      top: 250px;
+;
+    } 
+  </style>
+<style>
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    text-align: center;
+  }
+</style>
+    <!--About me-->
+    <% if (title == 'About Me') { %>
+      <div class="center">
+      <div class="about-me">
+        <h2>Melissa Jane Dennis</h2>
+        <p>"Hello, everyone! I'm a nature-loving individual with a passion for 
+          software engineering. I enjoy diving into code, conducting research, 
+          and finding innovative solutions. With my analytical mindset and 
+          attention to detail, I thrive on solving complex software challenges 
+          and optimizing code for efficiency. By combining my love for nature 
+          with my software engineering skills, I aspire to make a positive 
+          impact. Let's collaborate to push the boundaries of technology and 
+          create a better future."</p>
+          <a href="https://drive.google.com/file/d/1V3c9OQxqOo2Sbn1PzWJ05BbtKPQeFvQJ/view?usp=drive_link" target="_blank">View My Resume</a>
+      </div>
+    </div>
+      <% } %>
+
+    <!--Projects-->
+    <% if (title == 'Projects') { %>
+      <div class="center">
+      <div class="projects">
+        <h2>Coming soon...</h2>
+      </div>
+      </div>
+      <% } %>
+
+    <!--Services-->
+    <% if (title == 'Services') { %>
+      <div class="center">
+      <div class="services">
+        <h2>Coming soon...</h2>
+      </div>
+      </div>
+      <% } %>
+
+
+      <!-- Contact Page -->
+  <% if (title == 'Contact') { %>
+    <div class="center">
+    <div class="contact">
+    <h2>Contact Us</h2>
+    <form id="contactForm" action="#" method="POST">
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+      </div>
+      <div>
+        <button type="submit">Send Message</button>
+      </div>
+    </form>
+  </div>
+</div>
+  <% } %>
+<style>
+  .center {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .contact {
+    width: 400px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+  }
+  
+  input,
+  textarea {
+    width: 100%;
+    padding: 5px;
+  }
+  
+  button {
+    padding: 10px 20px;
+  }
+</style>
+
+<script>
+  const contactForm = document.getElementById('contactForm');
+  
+  contactForm.addEventListener('submit', (event) => {
+    event.preventDefault(); // Prevent form submission
+    
+    // Fetch form input values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    
+    console.log(`Message sent from ${name} (${email}): ${message}`);
+    
+    // Reset form fields
+    contactForm.reset();
+  });
+</script> 
+
+<style>
+  .contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-bottom: 10rem;
+  }
+
+  .form-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 10rem;
+  }
+  
+  .form-group label{
+    margin-bottom: 10rem;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 10rem;
+  }
+  
+  .form-group button {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 10rem;
+  }
+</style>
+
+
+
+<!-- Bottom Nav -->
+<footer>
+  <nav class="navbar fixed-bottom navbar-dark bg-dark">
+    <h6 class="display-6 navbar-text" style="font-size: 12px;">&copy; Copyrigth 2023. All Rights reserved. </h6>
+  </nav>
+</footer>
+
+<!-- Script Section -->
+<script src="/jquery/dist/jquery.min.js"></script>
+<script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/Scripts/app.js"></script>
+
+</body>
+</html>
