@@ -10,7 +10,9 @@ module.exports.displayContactList = (req, res, next) => {
       .sort({ name: 1 })
       .then((result) => {
         console.log(result);
-        res.render('contact/list', { title: 'Contacts', ContactList: result });
+        res.render('contact/list', { title: 'Contacts', 
+        ContactList: result, 
+        displayName: req.user ? req.user.displayName: '' });
       })
       .catch((err) => {
         console.error(err);
@@ -24,7 +26,7 @@ module.exports.displayEditPage = (req, res, next) => {
     Contact.findById(id)
       .then((contactToEdit) => {
         // Show the edit view
-        res.render('contact/edit', { title: 'Edit Contact', contact: contactToEdit });
+        res.render('contact/edit', { title: 'Edit Contact', contact: contactToEdit, displayName: req.user ? req.user.displayName: ''});
       })
       .catch((err) => {
         console.log(err);

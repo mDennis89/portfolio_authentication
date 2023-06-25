@@ -8,23 +8,23 @@ let userModel = require('../models/user');
 let User = userModel.User; //alias
 
 module.exports.displayHomePage = (req, res, next) => {
-    res.render('index', {title: 'Home'});
+    res.render('index', {title: 'Home', displayName: req.user ? req.user.displayName: ''});
 }
 
 module.exports.displayAboutmePage = (req, res, next) => {
-    res.render('index', {title: 'About Me'});
+    res.render('index', {title: 'About Me', displayName: req.user ? req.user.displayName: ''});
 }
 
 module.exports.displayProjectsPage = (req, res, next) => {
-    res.render('index', {title: 'Projects'});
+    res.render('index', {title: 'Projects', displayName: req.user ? req.user.displayName: ''});
 }
 
 module.exports.displayServicesPage = (req, res, next) => {
-    res.render('index', {title: 'Services'});
+    res.render('index', {title: 'Services', displayName: req.user ? req.user.displayName: ''});
 }
 
 module.exports.displayContactPage = (req, res, next) => {
-    res.render('index', {title: 'Contact'});
+    res.render('index', {title: 'Contact', displayName: req.user ? req.user.displayName: ''});
 }
 
 module.exports.displayLoginPage = (req, res, next) => {
