@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <!-- CSS Section -->
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel='stylesheet' href='/Content/app.css' />
+
+</head>
+</body>
+
+
+<!-- Main Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/"><img src="https://drive.google.com/uc?export=view&id=1i2LMFaB7RCYaI0lf12ZJb9VKvNdEMTCK" height="50" alt="Logo">
+    Melissa Dennis</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+  
+        <% if (title == "Home") { %>
+        <li class="nav-item active">
+        <% } else { %>
+        <li class="nav-item">
+        <% } %>
+          <a class="nav-link" href="/home"><i class="fa-solid fa-house"></i> Home </a>
+        </li>
+  
+        <% if (title == "About Me") { %>
+          <li class="nav-item active">
+          <% } else { %>
+          <li class="nav-item">
+          <% } %>
+          <a class="nav-link" href="/about-me"><i class="fa-solid fa-user"></i> About Me </a>
+        </li>
+  
+        <% if (title == "Projects") { %>
+          <li class="nav-item active">
+          <% } else { %>
+          <li class="nav-item">
+          <% } %>
+          <a class="nav-link" href="/projects"><i class="fa-solid fa-cart-shopping"></i> Projects </a>
+        </li>
+  
+        <% if (title == "Services") { %>
+          <li class="nav-item active">
+          <% } else { %>
+          <li class="nav-item">
+          <% } %>
+          <a class="nav-link" href="/services"><i class="fa-solid fa-bars"></i> Services </a>
+        </li>
+  
+        <% if (title == "Contact") { %>
+          <li class="nav-item active">
+          <% } else { %>
+          <li class="nav-item">
+          <% } %>
+          <a class="nav-link" href="/contact"><i class="fa-solid fa-question"></i> Contact </a>
+        </li>
+    </div>
+  </nav>
+
+<!-- Content for the Edit page-->
+
+<main class="container">
+  <!-- Message Area -->
+  <div class="row justify-content-center">
+    <div class="offset-md-3 col-md-6">
+      <h1><%= title %></h1>
+
+      <form class="form" method="POST">
+        <div class="form-group">
+          <label for="nameTextField">Name</label>
+          <input type="text" class="form-control" id="nameTextField" placeholder="Enter Name" name="name" value="<%= contact.name %>" required>
+        </div>
+      
+        <div class="form-group">
+          <label for="contactNumberTextField">Contact Number</label>
+          <input type="text" class="form-control" id="contactNumberTextField" placeholder="Enter contact number" name="contact_number" value="<%= contact.contact_number %>" required>
+        </div>
+      
+        <div class="form-group">
+          <label for="emailTextField">Email</label>
+          <input type="text" class="form-control" id="emailTextField" placeholder="Enter Email" name="email" value="<%= contact.email %>" required>
+        </div>
+      
+        <div class="form-group d-flex justify-content-center">
+          <button class="btn btn-outline-primary" type="submit">
+            <i class="fas fa-edit"></i> Edit
+          </button>
+      
+          <a href="/contact-list" class="btn btn-warning">
+            <i class="fas fa-undo"></i> Cancel
+          </a>
+        </div>
+      </form>    
+    </div>
+  </div>
+</main>
+      
+        <!-- Bottom Nav -->
+        <footer>
+          <nav class="navbar fixed-bottom navbar-dark bg-dark">
+            <h6 class="display-6 navbar-text" style="font-size: 12px;">&copy; Copyrigth 2023. All Rights reserved. </h6>
+          </nav>
+        </footer>
+        
+        <!-- Script Section -->
+        <script src="/jquery/dist/jquery.min.js"></script>
+        <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/Scripts/app.js"></script>
+        
+        </body>
+        </html>

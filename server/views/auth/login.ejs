@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <!-- CSS Section -->
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel='stylesheet' href='/Content/app.css' />
+
+</head>
+</body>
+
+<!-- Main Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/"><img src="https://drive.google.com/uc?export=view&id=1i2LMFaB7RCYaI0lf12ZJb9VKvNdEMTCK" height="50" alt="Logo">
+    Melissa Dennis</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+  
+        <% if (title == "Home") { %>
+        <li class="nav-item active">
+        <% } else { %>
+        <li class="nav-item">
+        <% } %>
+          <a class="nav-link" href="/home"><i class="fa-solid fa-house"></i> Home </a>
+        </li>
+  
+        <% if (title == "About Me") { %>
+          <li class="nav-item active">
+          <% } else { %>
+          <li class="nav-item">
+          <% } %>
+          <a class="nav-link" href="/about-me"><i class="fa-solid fa-user"></i> About Me </a>
+        </li>
+  
+        <% if (title == "Projects") { %>
+          <li class="nav-item active">
+          <% } else { %>
+          <li class="nav-item">
+          <% } %>
+          <a class="nav-link" href="/projects"><i class="fa-solid fa-cart-shopping"></i> Projects </a>
+        </li>
+  
+        <% if (title == "Services") { %>
+          <li class="nav-item active">
+          <% } else { %>
+          <li class="nav-item">
+          <% } %>
+          <a class="nav-link" href="/services"><i class="fa-solid fa-bars"></i> Services </a>
+        </li>
+
+        <% if (title == "Contacts") { %>
+          <li class="nav-item active">
+          <% } else { %>
+          <li class="nav-item">
+          <% } %>
+          <a class="nav-link" href="/contact-list"><i class="fa-light fa-address-book"></i> Contacts </a>
+        </li>
+  
+        <% if (title == "Contact Us") { %>
+          <li class="nav-item active">
+          <% } else { %>
+          <li class="nav-item">
+          <% } %>
+          <a class="nav-link" href="/contact"><i class="fa-solid fa-question"></i> Contact </a>
+        </li>
+    </div>
+  </nav>
+
+  <main class ="container">
+    <!-- Message Area -->
+    <% if(message.length >0) {%>
+        <div class="alert alert-danger">
+            <%= messages %>
+        </div>
+    <% } %>
+
+    <div class="row">
+        <div class="offset-md-4 col-md-4">
+            <h1> Please Login</h1>
+            <form method="POST" autocomple="off">
+                <fieldset class="form-group">
+                    <label for= "username">Username:</label>
+                    <input type ="text" class="form-control"
+                    name="username" placeholder="Enter username"
+                    id="username" required autofocus>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for= "password">Password:</label>
+                <input type ="password" class="form-control"
+                name="password" placeholder="Enter password"
+                id="password" required >
+                or 
+                <a href="/register">Register Here</a>
+        
+            </fieldset>
+
+            <fieldset class="form-group text-right">
+                <input type="submit"
+                class="btn btn-success" value="Login">
+                <a href="/">
+                    <input type="button" class="btn btn-warning" value="Canel">
+                </a>
+            </fieldset>
+            </form>
+        </div>
+    </div>
+</main>
+
+
+  <!-- Bottom Nav -->
+  <footer>
+    <nav class="navbar fixed-bottom navbar-dark bg-dark">
+      <h6 class="display-6 navbar-text" style="font-size: 12px;">&copy; Copyrigth 2023. All Rights reserved. </h6>
+    </nav>
+  </footer>
+  
+  <!-- Script Section -->
+  <script src="/jquery/dist/jquery.min.js"></script>
+  <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/Scripts/app.js"></script>
+  
+  </body>
+  </html>

@@ -54,8 +54,16 @@
           <% } %>
           <a class="nav-link" href="/services"><i class="fa-solid fa-bars"></i> Services </a>
         </li>
+
+        <% if (title == "Contacts") { %>
+          <li class="nav-item active">
+          <% } else { %>
+          <li class="nav-item">
+          <% } %>
+          <a class="nav-link" href="/contact-list"><i class="fa-light fa-address-book"></i> Contacts </a>
+        </li>
   
-        <% if (title == "Contact") { %>
+        <% if (title == "Contact Us") { %>
           <li class="nav-item active">
           <% } else { %>
           <li class="nav-item">

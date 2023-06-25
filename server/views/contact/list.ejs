@@ -66,32 +66,47 @@
   </nav>
 
 <!-- Main Content -->
-<main class = "container">
-    <div class="row">
-        <div class="col-md-offset-3 col-md6-">
-            <h1><%= title %></h1>
-            <br>
-            <table class="table table-bordered table-striped table-hover">
-                <!-- Header Row-->
-                <tr>
-                    <th class="text-center">Name</th>
-                    <th class="text-center">Contact number</th>
-                    <th class="text-center">Email</th>
-                </tr>
+<main class="container">
+  <div class="row">
+      <div class="offset-md-1 col-md-10">
+          <h1><%= title %></h1>    
+          <br>
+          <table class="table table-bordered table-striped table-hover">
+              <!-- Header Row -->
+              <tr>
+                  <th class="text-center col-2">Name</th>
+                  <th class="text-center col-2">Contact number</th>
+                  <th class="text-center col-2">Email</th>
+                  <th class="text-center col-1"> Edit</th>
+                  <th class="text-center col-1"> Delete</th>
+              </tr>
 
-                <!-- Repeatable Template Row -->
+              <!-- Repeatable Template Row -->
 
-                <% for(let count = 0; count < ContactList.length; count++) { %>
-                    <tr>
-                        <td class="text-center"><%= ContactList[count].name %></td>
-                        <td class="text-center"><%= ContactList[count].contact number %></td>
-                        <td class="text-center"><%= ContactList[count].Email %></td>
-                    </tr>
-                <% } %>    
-            </table>
-        </div>
-    </div>
+              <% for(let count = 0; count < ContactList.length; count++) { %>
+                  <tr>
+                      <td class="text-center col-2"><%= ContactList[count].name %></td>
+                      <td class="text-center col-2"><%= ContactList[count]['contact number'] %></td>
+                      <td class="text-center col-2"><%= ContactList[count].Email %></td>
+
+                      <td class="text-center col-1">  
+                        <a href="/contact-list/Edit/<%= ContactList[count]._id %>" class="btn btn-outline-primary btn-xs">
+                        <i class="fas fa-pencil-alt"></i> Edit </a>
+                      </td>
+
+                      <td class="text-center col-1">  
+                          <a href="/contact-list/Delete/<%= ContactList[count]._id %>" class="btn btn-danger btn-xs">
+                          <i class="fas fa-trash-alt"></i> Delete </a>
+                        </td> 
+                         
+                  </tr>
+              <% } %>    
+          </table>
+      </div>
+  </div>
 </main>
+
+
 
        <!--mission statement-->
        <% if (title == 'Home') { %>
