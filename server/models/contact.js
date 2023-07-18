@@ -10,4 +10,4 @@ let contactsModel = mongoose.Schema({
     collection: "Contacts"
 });
 
-module.exports = mongoose.model('Contact', contactsModel);
+module.exports = mongoose.model('Contacts', contactsModel);

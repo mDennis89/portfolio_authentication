@@ -34,9 +34,8 @@ module.exports.processAddPage = (req, res, next) => {
     let newContact = Contact({
         "name": req.body.name,
         "contact number": req.body['contact number'],
-        "email": req.body.email,
-
-    });
+        "Email": req.body.Email,
+    });;
 
     Contact.create(newContact, (err, Contact) =>{
         if(err)
@@ -78,8 +77,7 @@ module.exports.processEditPage = (req, res, next) => {
         "_id": id,
         "name": req.body.name,
         "contact number": req.body['contact number'],
-        "email": req.body.email,
-
+        "Email": req.body.Email,
     });
 
     Contact.updateOne({_id: id}, updatedContact, (err) => {
