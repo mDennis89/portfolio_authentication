@@ -1,115 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= title %></title>
-  <!-- CSS Section -->
-  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/@fortawesome/fontawesome-free/css/all.min.css">
-  <link rel='stylesheet' href='/Content/app.css' />
+<%- include ../partials/header.ejs %>
 
-</head>
-</body>
+<%- include ../partials/main_nav.ejs %>
+  
 
-<!-- Main Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/"><img src="https://drive.google.com/uc?export=view&id=1i2LMFaB7RCYaI0lf12ZJb9VKvNdEMTCK" height="50" alt="Logo">
-    Melissa Dennis</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  
-    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-  
-        <% if (title == "Home") { %>
-        <li class="nav-item active">
-        <% } else { %>
-        <li class="nav-item">
-        <% } %>
-          <a class="nav-link" href="/home"><i class="fa-solid fa-house"></i> Home </a>
-        </li>
-  
-        <% if (title == "About Me") { %>
-          <li class="nav-item active">
-          <% } else { %>
-          <li class="nav-item">
-          <% } %>
-          <a class="nav-link" href="/about-me"><i class="fa-solid fa-user"></i> About Me </a>
-        </li>
-  
-        <% if (title == "Projects") { %>
-          <li class="nav-item active">
-          <% } else { %>
-          <li class="nav-item">
-          <% } %>
-          <a class="nav-link" href="/projects"><i class="fa-solid fa-cart-shopping"></i> Projects </a>
-        </li>
-  
-        <% if (title == "Services") { %>
-          <li class="nav-item active">
-          <% } else { %>
-          <li class="nav-item">
-          <% } %>
-          <a class="nav-link" href="/services"><i class="fa-solid fa-bars"></i> Services </a>
-        </li>
-  
-        <% if (title == "Contact") { %>
-          <li class="nav-item active">
-          <% } else { %>
-          <li class="nav-item">
-          <% } %>
-          <a class="nav-link" href="/contact"><i class="fa-solid fa-question"></i> Contact </a>
-        </li>
-    </div>
-  </nav>
-
-<!-- Main Content -->
-<main class="container">
-  <div class="row">
-      <div class="offset-md-1 col-md-10">
-          <h1><%= title %></h1>    
-          <br>
-          <table class="table table-bordered table-striped table-hover">
+      <main class="container">
+        <div class="row">
+          <div class="offset-md-1 col-md-10">
+            <h1><%= title %></h1>
+      
+            <table class="table table-bordered table-striped table-hover">
               <!-- Header Row -->
               <tr>
-                  <th class="text-center col-2">Name</th>
-                  <th class="text-center col-2">Contact number</th>
-                  <th class="text-center col-2">Email</th>
-                  <th class="text-center col-1"> Edit</th>
-                  <th class="text-center col-1"> Delete</th>
+                <th class="text-center col-2">Name</th>
+                <th class="text-center col-2">Contact Number</th>
+                <th class="text-center col-2">Email</th>
+                <th class="text-center col-1"></th>
+                <th class="text-center col-1"></th>
               </tr>
-
+      
               <!-- Repeatable Template Row -->
-
-              <% for(let count = 0; count < ContactList.length; count++) { %>
-                  <tr>
-                      <td class="text-center col-2"><%= ContactList[count].name %></td>
-                      <td class="text-center col-2"><%= ContactList[count]['contact number'] %></td>
-                      <td class="text-center col-2"><%= ContactList[count].Email %></td>
-
-                      <td class="text-center col-1">  
-                        <a href="/contact-list/Edit/<%= ContactList[count]._id %>" class="btn btn-outline-primary btn-xs">
-                        <i class="fas fa-pencil-alt"></i> Edit </a>
-                      </td>
-
-                      <td class="text-center col-1">  
-                          <a href="/contact-list/Delete/<%= ContactList[count]._id %>" class="btn btn-danger btn-xs">
-                          <i class="fas fa-trash-alt"></i> Delete </a>
-                        </td> 
-                         
-                  </tr>
-              <% } %>    
-          </table>
-      </div>
-  </div>
-</main>
-
+              <% for (let count = 0; count < ContactList.length; count++) { %>
+                <tr>
+                  <td class="text-center col-2"><%= ContactList[count].name %></td>
+                  <td class="text-center col-2"><%= ContactList[count].contactNumber %></td>
+                  <td class="text-center col-2"><%= ContactList[count].email %></td>
+                  <td class="text-center col-1">
+                    <a href="/contact-list/Edit/<%= ContactList[count]._id %>" class="btn btn-outline-primary btn-xs">
+                      <i class="fas fa-pencil-alt"></i> Edit
+                    </a>
+                  </td>
+                  <td class="text-center col-1">
+                    <a href="/contact-list/Delete/<%= ContactList[count]._id %>" class="btn btn-danger btn-xs">
+                      <i class="fas fa-trash-alt"></i> Delete
+                    </a>
+                  </td>
+                </tr>
+              <% } %>
+            </table>
+          </div>
+        </div>
+      </main>
+      
 
 
-       <!--mission statement-->
-       <% if (title == 'Home') { %>
+
+
+    <!--mission statement-->
+    <% if (title == 'Home') { %>
         <div class="mission-statement">
           <a href="/about-me" class="btn btn-primary">About Me </a>
           <h2>Mission Statement</h2>
@@ -300,18 +237,14 @@
         margin-bottom: 10rem;
       }
     </style>
-     
-    <!-- Bottom Nav -->
-    <footer>
-      <nav class="navbar fixed-bottom navbar-dark bg-dark">
-        <h6 class="display-6 navbar-text" style="font-size: 12px;">&copy; Copyrigth 2023. All Rights reserved. </h6>
-      </nav>
-    </footer>
-    
-    <!-- Script Section -->
-    <script src="/jquery/dist/jquery.min.js"></script>
-    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/Scripts/app.js"></script>
-    
-    </body>
-    </html>
+  </main>
+  
+<%- include ../partials/bottom_nav.ejs %>  
+
+<%- include ../partials/footer.ejs %>
+  
+
+
+
+
+

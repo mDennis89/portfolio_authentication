@@ -1,44 +1,48 @@
-let express = require('express')
+let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
 let passport = require('passport');
 
-//create the User Model instance
+// enable jwt
+//let jwt = require('jsonwebtoken');
+let DB = require('../config/db');
+
+// create the User Model instance
 let userModel = require('../models/user');
-let User = userModel.User; //alias
+let User = userModel.User; // alias
 
 module.exports.displayHomePage = (req, res, next) => {
-    res.render('index', {title: 'Home', displayName: req.user ? req.user.displayName: ''});
+    res.render('index', {title: 'Home', displayName: req.user ? req.user.displayName : ''});
 }
 
-module.exports.displayAboutmePage = (req, res, next) => {
-    res.render('index', {title: 'About Me', displayName: req.user ? req.user.displayName: ''});
+module.exports.displayAboutPage = (req, res, next) => {
+    res.render('index', { title: 'About Me', displayName: req.user ? req.user.displayName : ''});
 }
 
 module.exports.displayProjectsPage = (req, res, next) => {
-    res.render('index', {title: 'Projects', displayName: req.user ? req.user.displayName: ''});
+    res.render('index', { title: 'Projects', displayName: req.user ? req.user.displayName : ''});
 }
 
 module.exports.displayServicesPage = (req, res, next) => {
-    res.render('index', {title: 'Services', displayName: req.user ? req.user.displayName: ''});
+    res.render('index', { title: 'Services', displayName: req.user ? req.user.displayName : ''});
 }
 
 module.exports.displayContactPage = (req, res, next) => {
-    res.render('index', {title: 'Contact', displayName: req.user ? req.user.displayName: ''});
+    res.render('index', { title: 'Contact', displayName: req.user ? req.user.displayName : ''});
 }
 
 module.exports.displayLoginPage = (req, res, next) => {
-    //check if the user is already logged in
+    // check if the user is already logged in
     if(!req.user)
     {
-        res.render('auth/login',
+        res.render('auth/login', 
         {
-            title: "Login",
-            message: req.flash('loginMessage'),
-            displayName: req.user ? req.user.displayName : ''
+           title: "Login",
+           messages: req.flash('loginMessage'),
+           displayName: req.user ? req.user.displayName : '' 
         })
     }
-    else 
+    else
     {
         return res.redirect('/');
     }
@@ -47,30 +51,52 @@ module.exports.displayLoginPage = (req, res, next) => {
 module.exports.processLoginPage = (req, res, next) => {
     passport.authenticate('local',
     (err, user, info) => {
-        //server err?
+        // server err?
         if(err)
         {
             return next(err);
         }
-        //is there a user login error?
-        if (!user)
+        // is there a user login error?
+        if(!user)
         {
             req.flash('loginMessage', 'Authentication Error');
             return res.redirect('/login');
         }
         req.login(user, (err) => {
-            //server error
+            // server error?
             if(err)
             {
                 return next(err);
             }
+
+            const payload = 
+            {
+                id: user._id,
+                displayName: user.displayName,
+                username: user.username,
+                email: user.email
+            }
+
+            const authToken = jwt.sign(payload, DB.Secret, {
+                expiresIn: 604800 // 1 week
+            });
+
+            /* TODO - Getting Ready to convert to API
+            res.json({success: true, msg: 'User Logged in Successfully!', user: {
+                id: user._id,
+                displayName: user.displayName,
+                username: user.username,
+                email: user.email
+            }, token: authToken});
+            */
+
             return res.redirect('/contact-list');
         });
     })(req, res, next);
 }
 
 module.exports.displayRegisterPage = (req, res, next) => {
-    //check if the user is not already logged in
+    // check if the user is not already logged in
     if(!req.user)
     {
         res.render('auth/register',
@@ -87,7 +113,7 @@ module.exports.displayRegisterPage = (req, res, next) => {
 }
 
 module.exports.processRegisterPage = (req, res, next) => {
-    // instantiate a user object 
+    // instantiate a user object
     let newUser = new User({
         username: req.body.username,
         //password: req.body.password
@@ -95,39 +121,43 @@ module.exports.processRegisterPage = (req, res, next) => {
         displayName: req.body.displayName
     });
 
-    User.register(newUser, req.body.password, (err, user) => {
+    User.register(newUser, req.body.password, (err) => {
         if(err)
         {
-            console.log("Error: Inserting New USer");
-            (err.name == "UserExistsError")
+            console.log("Error: Inserting New User");
+            if(err.name == "UserExistsError")
             {
                 req.flash(
                     'registerMessage',
-                    'Registratioin Error: User Already Exists!'
+                    'Registration Error: User Already Exists!'
                 );
-                console.log('Error: User Already Exixts!')
+                console.log('Error: User Already Exists!')
             }
-            return res.render ('auth/register',
+            return res.render('auth/register',
             {
                 title: 'Register',
                 messages: req.flash('registerMessage'),
                 displayName: req.user ? req.user.displayName : ''
             });
         }
-        else 
+        else
         {
-            //if no error exixts, then registration is successful
+            // if no error exists, then registration is successful
 
-            //redirect the user and authenticate them
+            // redirect the user and authenticate them
+
+            /* TODO - Getting Ready to convert to API
+            res.json({success: true, msg: 'User Registered Successfully!'});
+            */
 
             return passport.authenticate('local')(req, res, () => {
-                res.redirect('/contact-list');
-            })
+                res.redirect('/contact-list')
+            });
         }
     });
 }
 
-module.exports.performlogout = (req, res, next) => {
+module.exports.performLogout = (req, res, next) => {
     req.logout();
     res.redirect('/');
-} 
+}
